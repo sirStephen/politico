@@ -9,7 +9,6 @@
 .dis-flex {
   display: flex;
   justify-content: center;
-  align-content: center;
   align-items: center;
 }
 
@@ -22,7 +21,7 @@ body {
   font-family: 'Karla', sans-serif;
   font-size: 1.9rem;
   font-weight: 400;
-  color: white;
+  color: #ffffff;
 }
 
 .align-items-center {
@@ -51,7 +50,6 @@ header {
   display: flex;
   width: 100%;
   padding: 2rem 1.6rem;
-  /* padding: 0 16px; */
   max-width: 115.2rem;
   margin: 0 auto;
   position: absolute;
@@ -62,14 +60,13 @@ header {
 
 .logo-container {
   color: #005C7F;
-  color: white;
+  color: #ffffff;
   padding: 0.5rem;
   border-radius: 0.2rem;
 }
 
 .logo {
   font-size: 3rem;
-  /* font-family: 'Lobster', cursive; */
   font-family: 'Faster One', cursive;
 }
 
@@ -93,7 +90,7 @@ nav {
 }
 
 .nav-links li a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -106,8 +103,6 @@ nav {
   min-height: 100%;
   height: 100vh;
   overflow: hidden;
-  /* background: url(../img/oliur-280433-unsplash.jpg) no-repeat center center fixed; */
-  /* background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(66, 202, 255, 0.3)), url(../img/Nigeria-flag-blog.jpg) no-repeat center center fixed; */
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 92, 127, 0.3)), url(../img/Nigeria-flag-blog.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -121,8 +116,6 @@ nav {
 
 .intro {
   padding: 0.5rem 6rem;
-  /* border: 0.2rem solid rgb(66, 202, 255); */
-  /* border: 0.2rem solid rgb(0, 92, 127); */
   text-align: center;
   margin: 1.5rem 1rem;
 }
@@ -182,7 +175,7 @@ section {
   font-size: 1.6rem;
   text-align: center;
   background-color: #6c757d;
-  color: white;
+  color: #ffffff;
 }
 
 .footer-container {
@@ -201,20 +194,19 @@ section {
   display: block;
   font-size: 2.5rem;
   padding: 1rem;
-  color: white;
+  color: #ffffff;
   transition: all 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
 }
 
 .social-links:hover {
-  background-color: white;
-  /* color: #005C7F; */
+  background-color: #ffffff;
   color: #6c757d;
   border-radius: 36rem;
   transform: scale(1.5);
 }
 
 .social-links-circle {
-  border: 1px solid white;
+  border: 1px solid #ffffff;
   border-radius: 36rem;
   margin: 1rem;
 }
@@ -226,7 +218,6 @@ section {
 .section-form {
   max-width: 100rem;
   margin: 0 auto;
-  /* border: 0.1rem solid #ccc; */
   padding: 4rem 2rem;
   background-color: white;
 }
@@ -288,7 +279,7 @@ select:focus {
 button, 
 .add-product {
   background-color: #6c757d;
-  color: white;
+  color: #ffffff;
   padding: 1.2rem 2rem;
   margin: 0.8rem 0;
   border: none;
@@ -305,11 +296,10 @@ button,
 
 .form-header {
   height: 9rem;
-  background-color: white;
+  background-color: #ffffff;
   color: #6c757d;
 }
 
 .form-header {
-  /* background-color: white; */
   background-color: #6c757d;
 }
