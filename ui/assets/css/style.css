@@ -1,0 +1,305 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.dis-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Karla', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.align-items-center {
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+.justify-content-center {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+
+.is-flex {
+  display: flex !important;
+}
+
+header {
+  position: relative;
+}
+
+.nav-container {
+  display: flex;
+  width: 100%;
+  padding: 2rem 1.6rem;
+  max-width: 115.2rem;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto
+}
+
+.logo-container {
+  color: #005C7F;
+  color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.logo {
+  font-size: 3rem;
+  font-family: 'Faster One', cursive;
+}
+
+nav {
+  justify-content: flex-end;
+  display: flex;
+  width: 100%;
+}
+
+.nav-links {
+  list-style-type: none;
+  overflow: hidden;
+}
+
+.nav-links li {
+  padding: 0 2rem;
+}
+
+.nav-links li:last-child {
+  padding: 0;
+}
+
+.nav-links li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-links li a:hover {
+  color: #3dc1f3;
+}
+
+.header-image {
+  width: 100%;
+  min-height: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 92, 127, 0.3)), url(../img/Nigeria-flag-blog.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.intro {
+  padding: 0.5rem 6rem;
+  text-align: center;
+  margin: 1.5rem 1rem;
+}
+
+.intro-text {
+  padding: 0 1.6rem;
+  text-align: center;
+}
+
+.goals-section {
+  color: grey;
+}
+
+section {
+  color: #6c757d;
+  padding: 6rem 0;
+  font-size: 1.6rem;
+}
+
+.columns-container {
+  padding: 12px 0;
+}
+
+.is-4-desktop {
+  flex: none;
+  width: 33.33333%;
+}
+
+.column.is-4-desktop {
+  flex: none;
+  width: 33.33333%;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.our-goals-icon {
+  font-size: 4.5rem;
+}
+
+.is-center {
+  text-align: center;
+}
+
+.goal-description,
+.h2-padding {
+  padding: 2rem;
+}
+
+.h2-font {
+  font-size: 3rem;
+}
+
+.footer {
+  padding: 6rem 0;
+  font-size: 1.6rem;
+  text-align: center;
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+.footer-container {
+  padding: 0 16px;
+  max-width: 115.2rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.social {
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+}
+
+.social-links {
+  display: block;
+  font-size: 2.5rem;
+  padding: 1rem;
+  color: #ffffff;
+  transition: all 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.social-links:hover {
+  background-color: #ffffff;
+  color: #6c757d;
+  border-radius: 36rem;
+  transform: scale(1.5);
+}
+
+.social-links-circle {
+  border: 1px solid #ffffff;
+  border-radius: 36rem;
+  margin: 1rem;
+}
+
+.section-form-side {
+  padding: 0 2rem;
+}
+
+.section-form {
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background-color: white;
+}
+
+.login-header {
+  padding-bottom: 3.2rem;
+  text-align: center;
+}
+
+.signin-body {
+  background-color: #ececec;
+}
+
+.logo.increase-h2 {
+  font-size: 8rem;
+}
+
+.login-header-p {
+  font-size: 2rem;
+}
+
+.form {
+  padding: 3.2rem 0;
+}
+
+.form-welcome {
+  font-size: 1.6rem;
+  color: #6c757d;
+}
+
+.form-div {
+  padding: 2rem 0;
+}
+
+input[type="email"], 
+input[type="password"], 
+input[type="number"], 
+input[type="text"], 
+input[type="search"], 
+select {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  margin: 0.8rem 0;
+  display: inline-block;
+  border: 0.1rem solid #ccc;
+  font-size: 1.6rem;
+  font-family: "Karla", sans-serif;
+}
+
+input[type="email"], 
+input[type="password"], 
+input[type="number"], 
+input[type="text"], 
+input[type="search"], 
+select:focus {
+  outline-color: #6c757d;
+}
+
+button, 
+.add-product {
+  background-color: #6c757d;
+  color: #ffffff;
+  padding: 1.2rem 2rem;
+  margin: 0.8rem 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+}
+
+.admin {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.form-header {
+  height: 9rem;
+  background-color: #ffffff;
+  color: #6c757d;
+}
+
+.form-header {
+  background-color: #6c757d;
+}
