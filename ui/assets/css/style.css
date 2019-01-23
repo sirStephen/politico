@@ -115,11 +115,11 @@ nav {
   background-size: cover;
 }
 
-.my-name {
+.uppercase {
   text-transform: uppercase;
 }
 
-.intro-job {
+.intro {
   padding: 0.5rem 6rem;
   /* border: 0.2rem solid rgb(66, 202, 255); */
   /* border: 0.2rem solid rgb(0, 92, 127); */
@@ -127,12 +127,12 @@ nav {
   margin: 1.5rem 1rem;
 }
 
-.intro-what-i-do {
+.intro-text {
   padding: 0 1.6rem;
   text-align: center;
 }
 
-.my-works-section {
+.goals-section {
   color: grey;
 }
 
@@ -168,7 +168,7 @@ section {
   text-align: center;
 }
 
-.description,
+.goal-description,
 .h2-padding {
   padding: 2rem;
 }
