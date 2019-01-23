@@ -25,8 +25,12 @@
             </div>
             <nav>
               <ul class="nav-links dis-flex">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#contact">Register</a></li>
+                <li><a href="index.html">Parties</a></li>
+                <li><a href="index.html">Candidates</a></li>
+                <li><a href="#contact">Create Party</a></li>
+                <li><a href="index.html">Create Office</a></li>
+                <li><a href="index.html">Profile</a></li>
+                <li><a href="index.html">Logout</a></li>
               </ul>
             </nav>
           </div>
@@ -37,27 +41,21 @@
     <div class="section-form-side top-padding">
       <div class="section-form">
         <div class="login-header">
-          <h2 class="logo increase-h2">Politico</h2>
-          <p class="login-header-p">Make your vote count</p>
+          <h2 class="h2-font">Create Party</h2>
         </div>
         <form class="form" action="">
-          <p class="form-welcome">Welcome! Please fill in your credentials</p>
           <div class="container form-div">
             <label for="uname">
-              <p>Username</p>
+              <p>Party Name</p>
             </label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" placeholder="Enter Party Name" name="uname" required>
 
-            <label for="psw">
-              <p>Password</p>
+            <label for="image">
+              <p>Upload Image</p>
             </label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="file" accept="image/*" name="image" required>
 
-            <button type="submit">Login</button>
-
-            <div class="admin">
-              <a class="admin-flow" href="manage-inventory.html">Please click here for admin flow</a>
-            </div>
+            <button type="submit">Create Party</button>
           </div>
         </form>
       </div>
