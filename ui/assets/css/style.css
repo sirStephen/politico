@@ -450,6 +450,10 @@ td {
   border-bottom: 1px solid #cccccc;
 }
 
+.reset-admin-button {
+  text-align: center;
+}
+
 .profile-image {
   width: 20rem;
   height: 20rem;
