@@ -445,3 +445,7 @@ td {
   border: none;
   border-bottom: 1px solid #cccccc;
 }
+
+.reset-admin-button {
+  text-align: center;
+}
