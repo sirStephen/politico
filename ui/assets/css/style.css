@@ -254,7 +254,7 @@ input[type="password"],
 input[type="number"], 
 input[type="text"], 
 input[type="search"],
-input[type="file"], 
+input[type="file"],
 select {
   width: 100%;
   padding: 1.2rem 2rem;
@@ -263,6 +263,10 @@ select {
   border: 0.1rem solid #ccc;
   font-size: 1.6rem;
   font-family: "Karla", sans-serif;
+}
+
+select {
+  background-color: #ffffff;
 }
 
 input[type="email"], 
@@ -448,4 +452,25 @@ td {
 
 .reset-admin-button {
   text-align: center;
+}
+
+.profile-image {
+  width: 20rem;
+  height: 20rem;
+  margin: 0 auto;
+}
+
+.profile-pic {
+  width: 100%;
+  border-radius: 180rem;
+  height: 100%;
+}
+
+.profile-name {
+  padding: 2rem 0;
+}
+
+.reset-button {
+  text-align: right;
+  margin: 4rem 0 0 0;
 }
