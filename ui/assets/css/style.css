@@ -461,3 +461,8 @@ td {
 .profile-name {
   padding: 2rem 0;
 }
+
+.reset-button {
+  text-align: right;
+  margin: 4rem 0 0 0;
+}
