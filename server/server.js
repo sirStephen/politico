@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.status(200));
 
 app.post('/api/v1/parties', isAdmin, PartyValidation.isCreatePartyValid, PartyController.createParty);
+app.delete('/api/v1/parties/:id', isAdmin, PartyController.deleteParty);
 
 app.post('/api/v1/login', UserController.login);
 
