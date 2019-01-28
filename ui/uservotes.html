@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body class="signin-body">
+<body class="signin-body small-font">
   <header class="form-header">
     <div class="header-container">
       <div class="nav-container">
@@ -36,14 +36,48 @@
       
     </div>
   </header>
+  <div id="menu" class="my-4">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <div id="overlay">
+    <div class="my-4 cross">
+      <i class="fas fa-times"></i>
+    </div>
+    <div id="menu-text">
+      <div class="menu-items">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <ul class="menu-nav-links">
+              <li class="menu-one nav-link menu-nav">
+                <a href="viewparties.html" class="nav-font-side">Parties</a>
+              </li>
+              <li class="menu-three nav-link menu-nav">
+                <a href="activecandidates.html" class="nav-font-side">Candidates</a>
+              </li>
+              <li class="menu-four nav-link menu-nav">
+                <a href="#" class="nav-font-side">Vote</a>
+              </li>
+              <li class="menu-four nav-link menu-nav">
+                <a href="userprofile.html" class="nav-font-side">Profile</a>
+              </li>
+              <li class="menu-four nav-link menu-nav">
+                <a href="login.html" class="nav-font-side">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <section class="top-padding view-port">
     <div class="section-form-side top-padding">
-      <div class="section-form">
+      <div class="section-form is-border">
         <div class="login-header">
-          <h2 class="h2-font">Vote</h2>
+          <h2 class="h2-font is-blue small-h2">Vote</h2>
         </div>
         <form class="form" action="">
-          <div class="container form-div">
+          <div class="container form-div small-font">
             <label for="coffice">
               <p>Choose Office</p>
             </label>
@@ -53,14 +87,15 @@
               <option value="vice">Vice President</option>
               <option value="Senate">Senate</option>
               <option value="governor">Governor</option>
-            </select> <br>
+            </select> <br><br>
 
             <label for="running-candidate">
               <p>Choose Candidate</p>
             </label>
-            <input type="radio" name="vote" value="vote" checked> Gregory Otiono<br>
-            <input type="radio" name="vote" value="vote"> Yemi Lawal<br>
-            <input type="radio" name="vote" value="vote"> Samuel Wasiu  
+            <br>
+            <input type="radio" name="vote" value="vote" checked> Gregory Otiono<br><br>
+            <input type="radio" name="vote" value="vote"> Yemi Lawal<br><br>
+            <input type="radio" name="vote" value="vote"> Samuel Wasiu<br><br>
             
             <button type="submit">Vote</button>
           </div>
@@ -70,8 +105,8 @@
   </section>
   <!-- footer -->
   <footer class="footer" id="contact">
-    <div class="footer-container">
-      <div class="social is-flex dis-flex">
+    <div class="footer-container small-font">
+      <div class="social is-flex dis-flex small-font">
         <div class="social-links-circle">
           <a href="https://twitter.com/sirr_greg" target="_blank" class="social-links">
             <i class="fab fa-twitter"></i>
@@ -98,6 +133,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

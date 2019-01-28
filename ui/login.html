@@ -17,31 +17,56 @@
 </head>
 
 <body class="signin-body">
-    <header class="form-header">
-        <div class="header-container">
-          <div class="nav-container">
-            <div class="logo-container">
-              <h2 class="logo">Politico</h2>
-            </div>
-            <nav>
-              <ul class="nav-links dis-flex">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="register.html">Register</a></li>
-              </ul>
-            </nav>
+  <header class="form-header">
+    <div class="header-container">
+      <div class="nav-container">
+        <div class="logo-container">
+          <h2 class="logo">Politico</h2>
+        </div>
+        <nav>
+          <ul class="nav-links dis-flex">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </nav>
+      </div>
+      
+    </div>
+  </header>
+  <div id="menu" class="my-4">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <div id="overlay">
+    <div class="my-4 cross">
+      <i class="fas fa-times"></i>
+    </div>
+    <div id="menu-text">
+      <div class="menu-items">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <ul class="menu-nav-links">
+              <li class="menu-one nav-link menu-nav">
+                <a href="index.html" class="nav-font-side">Home</a>
+              </li>
+              <li class="menu-four nav-link menu-nav">
+                <a href="register.html" class="nav-font-side">Register</a>
+              </li>
+            </ul>
           </div>
-          
         </div>
-      </header>
-  <section class="top-padding view-port">
+      </div>
+    </div>
+  </div>
+  <section class="top-padding view-port section-background-image">
     <div class="section-form-side top-padding">
-      <div class="section-form">
-        <div class="login-header">
-          <h2 class="logo increase-h2">Politico</h2>
-          <p class="login-header-p">Make your vote count</p>
+      <div class="section-form opacity is-border small-font">
+        <div class="login-header is-blue">
+          <h2 class="logo increase-h2 small-h2">Politico</h2>
+          <p class="login-header-p small-font">Make your vote count</p>
         </div>
-        <form class="form" action="viewparties.html">
-          <p class="form-welcome">Welcome! Please fill in your credentials</p>
+        <form class="form is-black" action="viewparties.html">
+          <p class="form-welcome is-black small-font">Welcome! Please fill in your credentials</p>
           <div class="container form-div">
             <label for="uname">
               <p>Email Address</p>
@@ -65,7 +90,7 @@
   </section>
   <!-- footer -->
   <footer class="footer" id="contact">
-    <div class="footer-container">
+    <div class="footer-container small-font">
       <div class="social is-flex dis-flex">
         <div class="social-links-circle">
           <a href="https://twitter.com/sirr_greg" target="_blank" class="social-links">
@@ -93,6 +118,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,5 @@
+const user = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJyb2xlIjoidXNlciJ9LCJpYXQiOjE1NDExMTIzMTIsImV4cCI6MTU3MjY1MjMxMn0.2CZ-4msWW5k9Kh8ms-x2F6QZUjGT7zmbPK5NPODsk9g';
+
+const admin = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNTQxMTEyNDY1LCJleHAiOjE1NzI2NTI0NjV9.cLqiMljksTwSAqW2WJ-UAaGCnruMracphV6589GaSl0';
+
+export { user, admin };
