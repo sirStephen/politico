@@ -2,6 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 import PartyController from './controllers/PartyController';
+import UserController from './controllers/UserController';
+import isAdmin from './middleware/Privilege';
+import PartyValidation from './middleware/validation/PartyValidation';
 
 dotenv.config();
 const app = express();
@@ -11,7 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.status(200));
 
-app.post('/api/v1/party', PartyController.createParty);
+app.post('/api/v1/parties', isAdmin, PartyValidation.isCreatePartyValid, PartyController.createParty);
+
+app.post('/api/v1/login', UserController.login);
 
 app.listen(process.env.PORT, () => {
   console.log(`app is listening on ${process.env.PORT}`);
