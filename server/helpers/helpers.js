@@ -6,8 +6,8 @@ export const success = (response, statusCode, status, data) => response.status(s
   .json({ status, data });
 
 // when a request has an error
-export const error = (response, statusCode, message) => response.status(statusCode)
-  .json({ message });
+export const error = (response, statusCode, status, message) => response.status(statusCode)
+  .json({ status, message });
 
 // find a party
 export const find = (partyArray, id) => partyArray.find(party => (id === party.id));

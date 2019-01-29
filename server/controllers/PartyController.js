@@ -25,6 +25,28 @@ class PartyController {
     }
     return success(response, 200, '200', 'no registered party');
   }
+
+  static deleteParty(request, response) {
+    const { id } = request.params;
+
+    const parseId = parsedInt(id);
+
+    // check if id is a number
+    if (!(Number.isInteger(parseId))) {
+      return error(response, 404, '404', 'Sorry, the party id must be an integer');
+    }
+
+    const party = partyDb.find(p => p.id === parseInt(request.params.id, 10));
+
+    if (!party) {
+      return error(response, 404, '404', 'Sorry, the party id was not found');
+    }
+
+    const index = partyDb.indexOf(party);
+    partyDb.splice(index, 1);
+
+    return success(response, 200, '200', 'The party was deleted successfully');
+  }
 }
 
 export default PartyController;
