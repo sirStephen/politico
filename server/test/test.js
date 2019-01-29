@@ -38,13 +38,16 @@ describe('PARTY', () => {
       });
   });
 
-  it('user/admin should be able to get all party on GET /api/v1/parties', (done) => {
+  it('user/admin should be able to fetch a particular party on GET /api/v1/parties/:id', (done) => {
     chai.request(app)
-      .get('/api/v1/parties')
+      .get('/api/v1/parties/2')
       .end((error, response) => {
         console.log(response.body);
         response.should.have.status(200);
         response.body.should.be.a('object');
+        response.body.should.have.property('data').which.is.an('object').and.has.property('partyName');
+        response.body.should.have.property('data').which.is.an('object').and.has.property('hqAddress');
+        response.body.should.have.property('data').which.is.an('object').and.has.property('id');
         response.body.should.have.property('data');
         done();
       });

@@ -47,6 +47,26 @@ class PartyController {
 
     return success(response, 200, '200', 'The party was deleted successfully');
   }
+
+  static getOneParty(request, response) {
+    const { id } = request.params;
+
+    const parsedId = parsedInt(id);
+    let partyDetails = '';
+
+    // check if id is a number
+    if (!(Number.isInteger(parsedId))) {
+      return error(response, 404, '404', 'Sorry, the party id must be an integer');
+    }
+
+    partyDetails = find(partyDb, parsedId);
+    // if product is found
+    if (partyDetails) {
+      return success(response, 200, '200', partyDetails);
+    }
+
+    return error(response, 404, '404', 'Sorry, the party id does not exist');
+  }
 }
 
 export default PartyController;
