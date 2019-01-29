@@ -16,7 +16,14 @@ class PartyController {
       });
       return success(response, 201, '201', partyDb[partyDb.length - 1]);
     }
-    return error(response, 400, 'Please enter the missing fields');
+    return error(response, 404, 'Sorry, could not process your request');
+  }
+
+  static allParty(request, response) {
+    if (partyDb.length > 0) {
+      return success(response, 200, '200', partyDb);
+    }
+    return success(response, 200, '200', 'no registered party');
   }
 }
 
