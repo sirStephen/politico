@@ -24,6 +24,18 @@ class OfficeController {
     }
     return success(response, 200, '200', 'no registered office');
   }
+
+  static getOneOffice(request, response) {
+    const { id } = request.params;
+
+    const office = officeDb.find(o => o.id === parsedInt(id));
+
+    if (office) {
+      return success(response, 200, '200', office);
+    }
+
+    return error(response, 404, '404', 'Sorry, the office id was not found');
+  }
 }
 
 export default OfficeController;

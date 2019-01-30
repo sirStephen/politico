@@ -309,4 +309,20 @@ describe('OFFICE', () => {
         done();
       });
   });
+
+  it('user/admin should be able to fetch a particular office on GET /api/v1/office/:id', (done) => {
+    chai.request(app)
+      .get('/api/v1/office/2')
+      .end((error, response) => {
+        console.log(response.body);
+        response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.should.have.property('data').which.is.an('object').and.has.property('officeName');
+        response.body.should.have.property('data').which.is.an('object').and.has.property('type');
+        response.body.should.have.property('data').which.is.an('object').and.has.property('id');
+        response.body.should.have.property('data');
+        done();
+      });
+  });
+
 })
