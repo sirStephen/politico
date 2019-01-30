@@ -59,7 +59,6 @@ header {
 }
 
 .logo-container {
-  color: #005C7F;
   color: #ffffff;
   padding: 0.5rem;
   border-radius: 0.2rem;
@@ -67,7 +66,6 @@ header {
 
 .logo {
   font-size: 3rem;
-  font-family: 'Faster One', cursive;
 }
 
 nav {
@@ -101,6 +99,17 @@ nav {
   height: 100vh;
   overflow: hidden;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 92, 127, 0.3)), url(../img/Nigeria-flag-blog.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.section-background-image {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: url(../img/successful-silhouette-man-winner-waving-nigeria-flag-on_barwzorm__F0000.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -171,7 +180,7 @@ section {
   padding: 6rem 0;
   font-size: 1.6rem;
   text-align: center;
-  background-color: #6c757d;
+  background-color: #000156;
   color: #ffffff;
 }
 
@@ -197,13 +206,13 @@ section {
 
 .social-links:hover {
   background-color: #ffffff;
-  color: #6c757d;
+  color: #000156;
   border-radius: 36rem;
   transform: scale(1.5);
 }
 
 .social-links-circle {
-  border: 1px solid #ffffff;
+  border: 2px solid #ffffff;
   border-radius: 36rem;
   margin: 1rem;
 }
@@ -260,9 +269,10 @@ select {
   padding: 1.2rem 2rem;
   margin: 0.8rem 0;
   display: inline-block;
-  border: 0.1rem solid #ccc;
+  border: 0.1rem solid #cccccc;
   font-size: 1.6rem;
   font-family: "Karla", sans-serif;
+  border-radius: 0.8rem;
 }
 
 select {
@@ -275,12 +285,17 @@ input[type="number"],
 input[type="text"], 
 input[type="search"], 
 select:focus {
-  outline-color: #6c757d;
+  outline-color: #000156;
+  border-radius: 0.8rem;
 }
 
-button, 
-.add-product {
-  background-color: #6c757d;
+.is-border {
+  border: 2px solid #cccccc;
+  border-radius: 0.8rem;
+}
+
+button {
+  background-color: #000156;
   color: #ffffff;
   padding: 1.2rem 2rem;
   margin: 0.8rem 0;
@@ -289,6 +304,12 @@ button,
   width: 100%;
   font-size: 1.6rem;
   border-radius: 0.5rem;
+}
+
+button:hover {
+  background-color: #ffffff;
+  color: #000156;
+  border: 2px solid #000156;
 }
 
 .admin {
@@ -303,7 +324,7 @@ button,
 }
 
 .form-header {
-  background-color: #6c757d;
+  background-color: #000156;
 }
 
 .party {
@@ -345,7 +366,7 @@ button,
   max-width: 100%;
   position: relative;
   margin: 1rem;
-  height: 32rem;
+  height: auto;
   background-color: #ffffff;
   padding: 1rem;
 }
@@ -373,10 +394,16 @@ button,
 
 a.action-button-link {
   padding: 0.5rem 1rem;
-  background: #6c757d;
+  background: #000156;
   color: #ffffff;
   text-decoration: none;
   border-radius: 0.5rem;
+}
+
+a.action-button-link:hover {
+  background: #ffffff;
+  color: #000156;
+  border: 2px solid #000156;
 }
 
 .m-t-1 {
@@ -392,16 +419,19 @@ a.action-button-link {
   font-size: 1.8rem;  
   border: none;
   outline: none;
-  padding: 1.4rem 1.6rem;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
 }
 
+.dropdown button {
+  padding: 0;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
-  color: #6c757d;
+  color: #000156;
   background-color: #f9f9f9;
   box-shadow: 0rem 0.8rem 1.6rem 0rem rgba(0,0,0,0.2);
   z-index: 1;
@@ -445,6 +475,18 @@ tr {
   width: 100%;
 }
 
+.is-blue {
+  color: #000156;
+}
+
+.opacity {
+  opacity: 0.7;
+}
+
+.is-black {
+  color: #000000;
+}
+
 td {
   border: none;
   border-bottom: 1px solid #cccccc;
@@ -473,4 +515,132 @@ td {
 
 .reset-admin-button {
   text-align: center;
+}
+
+#menu-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  color: #ffffff;
+  width: 100%;
+}
+
+#menu {
+  z-index: 2;
+  position: absolute;
+  top: 15px;
+  padding: 2rem;
+  right: 0;
+  color: #ffffff;
+  font-size: 2rem;
+  display: none;
+}
+
+.cross {
+  z-index: 2;
+  padding: 2rem;
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 15px;
+}
+
+.menu-nav {
+  padding: 2rem 0;
+}
+
+#menu:hover {
+  cursor: pointer;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: .95;
+  background-color: #000156;
+  z-index: 2;
+  cursor: pointer;
+}
+
+#overlay:hover {
+  cursor: pointer;
+}
+
+.nav-font-side {
+  font-size: 2rem;
+}
+
+/* .view-port {
+  height: 100vh;
+} */
+
+.nav-link a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.nav-link a:hover {
+  color: #3dc1f3;
+}
+
+.menu-nav-links {
+  padding: 2rem;
+  list-style: none;
+}
+
+/* RESPONSIVE CSS */
+@media only screen and (max-width: 950px) {
+  .column.is-4-desktop {
+    width: 50%;
+  }
+
+  .column.is-6-tablet {
+    width: 50%;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  #menu {
+    display: block;
+  }
+
+  .column-space {
+    margin: 2rem 0;
+  }
+}
+
+@media only screen and (max-width: 515px) {
+  .column.is-4-desktop {
+    width: 100%;
+  }
+
+  body {
+    font-size: 1.4rem !important;
+  }
+
+  button {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+
+  #overlay {
+    width: 100%;
+  }
+
+  .small-font {
+    font-size: 1.4rem !important;
+  }
+
+  .small-h2 {
+    font-size: 2.5rem !important;
+  }
 }
