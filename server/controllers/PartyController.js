@@ -1,7 +1,7 @@
 import partyDb from '../models/partyDb';
 
 import {
-  parsedInt, success, error, find, isValid,
+  parsedInt, success, error, isValid,
 } from '../helpers/helpers';
 
 class PartyController {
@@ -29,14 +29,7 @@ class PartyController {
   static deleteParty(request, response) {
     const { id } = request.params;
 
-    const parseId = parsedInt(id);
-
-    // check if id is a number
-    if (!(Number.isInteger(parseId))) {
-      return error(response, 404, '404', 'Sorry, the party id must be an integer');
-    }
-
-    const party = partyDb.find(p => p.id === parseInt(request.params.id, 10));
+    const party = partyDb.find(p => p.id === parsedInt(id));
 
     if (!party) {
       return error(response, 404, '404', 'Sorry, the party id was not found');
@@ -51,21 +44,28 @@ class PartyController {
   static getOneParty(request, response) {
     const { id } = request.params;
 
-    const parsedId = parsedInt(id);
-    let partyDetails = '';
+    const party = partyDb.find(p => p.id === parsedInt(id));
 
-    // check if id is a number
-    if (!(Number.isInteger(parsedId))) {
-      return error(response, 404, '404', 'Sorry, the party id must be an integer');
+    if (party) {
+      return success(response, 200, '200', party);
     }
 
-    partyDetails = find(partyDb, parsedId);
-    // if product is found
-    if (partyDetails) {
-      return success(response, 200, '200', partyDetails);
+    return error(response, 404, '404', 'Sorry, the party id was not found');
+  }
+
+  static updateParty(request, response) {
+    const { id } = request.params;
+
+    const party = partyDb.find(p => p.id === parsedInt(id));
+
+    if (party) {
+      party.partyName = request.body.partyName;
+      party.hqAddress = request.body.hqAddress;
+
+      return success(response, 200, '200', party);
     }
 
-    return error(response, 404, '404', 'Sorry, the party id does not exist');
+    return error(response, 404, '404', 'Sorry, the party id was not found');
   }
 }
 
