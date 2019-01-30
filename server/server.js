@@ -23,6 +23,7 @@ app.put('/api/v1/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyVali
 app.delete('/api/v1/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyController.deleteParty);
 
 app.post('/api/v1/office', isAdmin, OfficeValidation.isCreateOfficeValid, OfficeController.createOffice);
+app.get('/api/v1/office', OfficeController.allOffice);
 
 app.post('/api/v1/login', UserController.login);
 
