@@ -3,8 +3,10 @@ import dotenv from 'dotenv';
 
 import PartyController from './controllers/PartyController';
 import UserController from './controllers/UserController';
+import OfficeController from './controllers/OfficeController';
 import isAdmin from './middleware/Privilege';
 import PartyValidation from './middleware/validation/PartyValidation';
+import OfficeValidation from './middleware/validation/OfficeValidation';
 
 dotenv.config();
 const app = express();
@@ -19,6 +21,8 @@ app.get('/api/v1/parties', PartyController.allParty);
 app.post('/api/v1/parties', isAdmin, PartyValidation.isCreatePartyValid, PartyController.createParty);
 app.put('/api/v1/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyValidation.isCreatePartyValid, PartyController.updateParty);
 app.delete('/api/v1/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyController.deleteParty);
+
+app.post('/api/v1/office', isAdmin, OfficeValidation.isCreateOfficeValid, OfficeController.createOffice);
 
 app.post('/api/v1/login', UserController.login);
 

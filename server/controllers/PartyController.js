@@ -16,7 +16,7 @@ class PartyController {
       });
       return success(response, 201, '201', partyDb[partyDb.length - 1]);
     }
-    return error(response, 404, 'Sorry, could not process your request');
+    return error(response, 404, '404', 'Sorry, could not process your request');
   }
 
   static allParty(request, response) {
