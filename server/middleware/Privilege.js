@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { success, error } from '../helpers/helpers';
+import { error } from '../helpers/helpers';
 
 const isAdmin = (request, response, next) => {
   try {
