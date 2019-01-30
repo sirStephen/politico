@@ -17,6 +17,13 @@ class OfficeController {
     }
     return error(response, 404, '404', 'Sorry, could not process your request');
   }
+
+  static allOffice(request, response) {
+    if (officeDb.length > 0) {
+      return success(response, 200, '200', officeDb);
+    }
+    return success(response, 200, '200', 'no registered office');
+  }
 }
 
 export default OfficeController;

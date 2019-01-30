@@ -297,4 +297,16 @@ describe('OFFICE', () => {
         done();
       });
   });
+
+  it('users should be able to get all offices GET /api/v1/office', (done) => {
+    chai.request(app)
+      .get('/api/v1/office')
+      .end((error, response) => {
+        console.log(response.body);
+        response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('200');
+        done();
+      });
+  });
 })
