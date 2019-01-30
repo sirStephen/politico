@@ -7,12 +7,12 @@ const isAdmin = (request, response, next) => {
     const decoded = jwt.decode(getToken);
 
     if (decoded.data.role !== 'admin') {
-      return error(response, 401, 'you are not authorized');
+      return error(response, 401, '401', 'you are not authorized');
     }
 
     next();
   } catch (err) {
-    return error(response, 401, 'auth failed');
+    return error(response, 401, '401', 'auth failed');
   }
 
   return null;
