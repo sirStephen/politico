@@ -1,4 +1,5 @@
 import partyDb from '../models/partyDb';
+import pool from '../db/index';
 
 import {
   parsedInt, success, error, isValid,
