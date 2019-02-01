@@ -1,4 +1,4 @@
-import partyDb from '../models/partyDb';
+// import partyDb from '../models/partyDb';
 import pool from '../db/index';
 
 import {
@@ -21,10 +21,18 @@ class PartyController {
   }
 
   static allParty(request, response) {
-    if (partyDb.length > 0) {
-      return success(response, 200, '200', partyDb);
-    }
-    return success(response, 200, '200', 'no registered party');
+    pool.query('SELECT * FROM party ORDER BY id ASC', (err, result) => {
+      if (err) {
+        return error(response, 500, '500', 'error in fetching data');
+      }
+
+      if (result.rowCount > 0) {
+        const getAllParties = result.rows;
+        return success(response, 200, '200', getAllParties);
+      }
+
+      return error(response, 404, '404', 'no products found');
+    });
   }
 
   static deleteParty(request, response) {
