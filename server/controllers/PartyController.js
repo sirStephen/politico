@@ -1,4 +1,3 @@
-// import partyDb from '../models/partyDb';
 import pool from '../db/index';
 
 import {
@@ -19,7 +18,7 @@ class PartyController {
    * @param {object} request - Request object
    * @param {object} response - Reponse object
    * @returns {json} response.json
-   * @memberOf PartyControllers
+   * @memberOf PartyController
    */
 
   static createParty(request, response) {
@@ -47,7 +46,9 @@ class PartyController {
           });
         }
 
-        return null;
+        return error(response, 400, '400', {
+          message: 'an error occurred while creating a new party',
+        });
       },
     );
   }
@@ -59,7 +60,7 @@ class PartyController {
    * @param {object} request - Request object
    * @param {object} response - Reponse object
    * @returns {json} response.json
-   * @memberOf PartyControllers
+   * @memberOf PartyController
    */
 
   static allParty(request, response) {
@@ -73,7 +74,7 @@ class PartyController {
         return success(response, 200, '200', getAllParties);
       }
 
-      return error(response, 404, '404', 'no products found');
+      return error(response, 404, '404', 'Sorry, no party found');
     });
   }
 
@@ -92,17 +93,34 @@ class PartyController {
   //   return success(response, 200, '200', 'The party was deleted successfully');
   // }
 
-  // static getOneParty(request, response) {
-  //   const { id } = request.params;
+  /**
+   *
+   * @description update a party
+   * @static method
+   * @param {object} request - Request object
+   * @param {object} response - Reponse object
+   * @returns {json} response.json
+   * @memberOf PartyController
+   */
+  static getOneParty(request, response) {
+    const { id } = request.params;
 
-  //   const party = partyDb.find(p => p.id === parsedInt(id));
+    pool.query('SELECT * FROM party WHERE id = $1', [id], (err, result) => {
+      if (err) {
+        return error(response, 500, '500', 'cannot connect to database');
+      }
 
-  //   if (party) {
-  //     return success(response, 200, '200', party);
-  //   }
+      if (result.rowCount > 0) {
+        const oneParty = result.rows;
+        return success(response, 200, '200', {
+          message: 'found party',
+          oneParty,
+        });
+      }
 
-  //   return error(response, 404, '404', 'Sorry, the party id was not found');
-  // }
+      return error(response, 404, '404', 'Sorry, the party id was not found');
+    });
+  }
 
   // static updateParty(request, response) {
   //   const { id } = request.params;

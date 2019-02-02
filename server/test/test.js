@@ -8,11 +8,10 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('PARTY', () => {
-  it('user/admin should be able to fetch all parties on GET /api/v1/parties', (done) => {
+  it('user/admin should be able to fetch all parties on GET /api/v2/parties', (done) => {
     chai.request(app)
-      .get('/api/v1/parties')
+      .get('/api/v2/parties')
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(200);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('200');
@@ -20,13 +19,22 @@ describe('PARTY', () => {
       });
   });
 
-  it('admin should be able to create new parties POST /api/v1/parties', (done) => {
+  it('user/admin should be able to fetch all parties on GET /api/v2/parties', (done) => {
     chai.request(app)
-      .post('/api/v1/parties')
+      .get('/api/v2/partie')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.be.a('object');
+        done();
+      });
+  });
+
+  it('admin should be able to create new parties POST /api/v2/parties', (done) => {
+    chai.request(app)
+      .post('/api/v2/parties')
       .set('Authorization', admin)
       .send({ partyname: 'pdp', hqAddress: '3, Wegbo Street, Lagos.', createat: 'NOW()' })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(201);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('201');
@@ -36,13 +44,12 @@ describe('PARTY', () => {
       });
   });
 
-  it('user should not be able to create new party on POST /api/v1/party', (done) => {
+  it('user should not be able to create new party on POST /api/v2/party', (done) => {
     chai.request(app)
-      .post('/api/v1/parties')
+      .post('/api/v2/parties')
       .set('Authorization', user)
       .send({ partyname: 'pdpUSER', hqAddress: '3, Wegbo Street, Lagos.', createat: 'NOW()' })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(401);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('401');
@@ -51,12 +58,11 @@ describe('PARTY', () => {
       });
   });
 
-  it('when you are not a user/admin, you should not be able to create new party on POST /api/v1/party', (done) => {
+  it('when you are not a user/admin, you should not be able to create new party on POST /api/v2/party', (done) => {
     chai.request(app)
-      .post('/api/v1/parties')
+      .post('/api/v2/parties')
       .send({ partyname: 'pdpUSER', hqAddress: '3, Wegbo Street, Lagos.', createat: 'NOW()' })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(401);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('401');
@@ -65,13 +71,12 @@ describe('PARTY', () => {
       });
   });
 
-  it('missing fields in creating a party POST /api/v1/parties', (done) => {
+  it('missing fields in creating a party POST /api/v2/parties', (done) => {
     chai.request(app)
-      .post('/api/v1/parties')
+      .post('/api/v2/parties')
       .set('Authorization', admin)
       .send({ partyname: '', hqAddress: '3, Wegbo Street, Lagos.' })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(400);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('400');
@@ -80,13 +85,12 @@ describe('PARTY', () => {
       });
   });
 
-  it('missing fields in creating a party POST /api/v1/parties', (done) => {
+  it('missing fields in creating a party POST /api/v2/parties', (done) => {
     chai.request(app)
-      .post('/api/v1/parties')
+      .post('/api/v2/parties')
       .set('Authorization', admin)
       .send({ partyname: 'act', hqAddress: '' })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(400);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('400');
@@ -95,13 +99,12 @@ describe('PARTY', () => {
       });
   });
 
-  it('missing fields in creating a party POST /api/v1/parties', (done) => {
+  it('missing fields in creating a party POST /api/v2/parties', (done) => {
     chai.request(app)
-      .post('/api/v1/parties')
+      .post('/api/v2/parties')
       .set('Authorization', admin)
       .send({ partyname: 'act' })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(400);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('400');
@@ -110,13 +113,12 @@ describe('PARTY', () => {
       });
   });
 
-  it('missing fields in creating a party POST /api/v1/parties', (done) => {
+  it('missing fields in creating a party POST /api/v2/parties', (done) => {
     chai.request(app)
-      .post('/api/v1/parties')
+      .post('/api/v2/parties')
       .set('Authorization', admin)
       .send({ hqAddress: 'Andela Tower' })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(400);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('400');
@@ -125,17 +127,51 @@ describe('PARTY', () => {
       });
   });
 
-  it('missing fields in creating a party POST /api/v1/parties', (done) => {
+  it('missing fields in creating a party POST /api/v2/parties', (done) => {
     chai.request(app)
-      .post('/api/v1/parties')
+      .post('/api/v2/parties')
       .set('Authorization', admin)
       .send({ partyname: 123, hqAddress: 'Yaba, Lagos' })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(400);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('400');
         response.body.should.have.property('message').eql('Sorry,party name must be a string');
+        done();
+      });
+  });
+
+  it('user/admin should be able to fetch a particular party on GET /api/v2/parties/:id', (done) => {
+    chai.request(app)
+      .get('/api/v2/parties/2')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('200');
+        done();
+      });
+  });
+
+  it('when the endpoint is an integer GET /api/v2/parties/:id', (done) => {
+    chai.request(app)
+      .get('/api/v2/parties/2a')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('404');
+        response.body.should.have.property('message').eql('Sorry, the party id must be an integer');
+        done();
+      });
+  });
+
+  it('when the endpoint is invalid GET /api/v2/parties/:id', (done) => {
+    chai.request(app)
+      .get('/api/v2/parties/1000')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('404');
+        response.body.should.have.property('message').eql('Sorry, the party id was not found');
         done();
       });
   });
