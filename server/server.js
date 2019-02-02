@@ -16,11 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.status(200));
 
-app.get('/api/v1/parties/:id', PartyValidation.isIdAnInteger, PartyController.getOneParty);
+// app.get('/api/v1/parties/:id', PartyValidation.isIdAnInteger, PartyController.getOneParty);
 app.get('/api/v1/parties', PartyController.allParty);
 app.post('/api/v1/parties', isAdmin, PartyValidation.isCreatePartyValid, PartyController.createParty);
-app.put('/api/v1/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyValidation.isCreatePartyValid, PartyController.updateParty);
-app.delete('/api/v1/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyController.deleteParty);
+// app.put('/api/v1/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyValidation.isCreatePartyValid, PartyController.updateParty);
+// app.delete('/api/v1/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyController.deleteParty);
 
 app.post('/api/v1/office', isAdmin, OfficeValidation.isCreateOfficeValid, OfficeController.createOffice);
 
