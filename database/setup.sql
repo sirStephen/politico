@@ -41,6 +41,27 @@ VALUES('pdp', '3, Wegbo Street, Off-Iwaya, Lagos', 'assets/img/picture.jpg', 'NO
 INSERT INTO party(partyname, hqAddress, logoUrl, createat)
 VALUES('apc', '42, Montegomery Street, Yaba, Lagos', 'assets/img/picture.jpeg', 'NOW()');
 
+INSERT INTO party(partyname, hqAddress, logoUrl, createat)
+VALUES('apc', '42, Montegomery Street, Yaba, Lagos', 'assets/img/picture.jpeg', 'NOW()');
+
+INSERT INTO party(partyname, hqAddress, logoUrl, createat)
+VALUES('apc', '42, Montegomery Street, Yaba, Lagos', 'assets/img/picture.jpeg', 'NOW()');
+
+INSERT INTO party(partyname, hqAddress, logoUrl, createat)
+VALUES('apc', '42, Montegomery Street, Yaba, Lagos', 'assets/img/picture.jpeg', 'NOW()');
+
+INSERT INTO party(partyname, hqAddress, logoUrl, createat)
+VALUES('apc', '42, Montegomery Street, Yaba, Lagos', 'assets/img/picture.jpeg', 'NOW()');
+
+INSERT INTO party(partyname, hqAddress, logoUrl, createat)
+VALUES('apc', '42, Montegomery Street, Yaba, Lagos', 'assets/img/picture.jpeg', 'NOW()');
+
+INSERT INTO party(partyname, hqAddress, logoUrl, createat)
+VALUES('apc', '42, Montegomery Street, Yaba, Lagos', 'assets/img/picture.jpeg', 'NOW()');
+
+INSERT INTO party(partyname, hqAddress, logoUrl, createat)
+VALUES('apc', '42, Montegomery Street, Yaba, Lagos', 'assets/img/picture.jpeg', 'NOW()');
+
 INSERT INTO office(officename, type, createat)
 VALUES ('president', 'federal', 'NOW()');
 

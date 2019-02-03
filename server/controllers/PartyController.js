@@ -1,7 +1,7 @@
 import pool from '../db/index';
 
 import {
-  parsedInt, success, error,
+  success, error,
 } from '../helpers/helpers';
 
 /**
@@ -82,20 +82,34 @@ class PartyController {
     });
   }
 
-  // static deleteParty(request, response) {
-  //   const { id } = request.params;
+  /**
+   *
+   * @description delete party
+   * @static method
+   * @param {object} request - Request object
+   * @param {object} response - Reponse object
+   * @returns {json} response.json
+   * @memberOf PartyController
+   */
+  static deleteParty(request, response) {
+    const { id } = request.params;
 
-  //   const party = partyDb.find(p => p.id === parsedInt(id));
+    const deleteParty = 'DELETE FROM party WHERE id = ($1)';
 
-  //   if (!party) {
-  //     return error(response, 404, '404', 'Sorry, the party id was not found');
-  //   }
+    pool.query(deleteParty, [id], (err, result) => {
+      if (err) {
+        return error(response, 500, '500', 'cannot connect to database');
+      }
 
-  //   const index = partyDb.indexOf(party);
-  //   partyDb.splice(index, 1);
-
-  //   return success(response, 200, '200', 'The party was deleted successfully');
-  // }
+      if (result) {
+        if (result.rowCount > 0) {
+          return success(response, 200, '200', 'The party was deleted successfully');
+        }
+      }
+      return error(response, 404, '404', 'Sorry, party id does not exist');
+    });
+    return null;
+  }
 
   /**
    *

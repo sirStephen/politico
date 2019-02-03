@@ -143,7 +143,7 @@ describe('PARTY', () => {
 
   it('user/admin should be able to fetch a particular party on GET /api/v2/parties/:id', (done) => {
     chai.request(app)
-      .get('/api/v2/parties/2')
+      .get('/api/v2/parties/5')
       .end((error, response) => {
         response.should.have.status(200);
         response.body.should.be.a('object');
@@ -273,6 +273,70 @@ describe('PARTY', () => {
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('404');
         response.body.should.have.property('message').eql('Sorry, the party id must be an integer');
+        done();
+      });
+  });
+
+  it('id must be an integer DELETE /api/v2/parties/:id', (done) => {
+    chai.request(app)
+      .delete('/api/v2/parties/a')
+      .set('Authorization', admin)
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('404');
+        response.body.should.have.property('message').eql('Sorry, the party id must be an integer');
+        done();
+      });
+  });
+
+  it('invalid id DELETE /api/v2/parties/:id', (done) => {
+    chai.request(app)
+      .delete('/api/v2/parties/1000')
+      .set('Authorization', admin)
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('404');
+        response.body.should.have.property('message').eql('Sorry, party id does not exist');
+        done();
+      });
+  });
+
+  it('admin should be able to delete party DELETE /api/v2/parties/:id', (done) => {
+    chai.request(app)
+      .delete('/api/v2/parties/10')
+      .set('Authorization', admin)
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('200');
+        response.body.should.have.property('data').eql('The party was deleted successfully');
+        done();
+      });
+  });
+
+  it('user should not be able to delete party DELETE /api/v2/parties/:id', (done) => {
+    chai.request(app)
+      .delete('/api/v2/parties/10')
+      .set('Authorization', user)
+      .end((error, response) => {
+        response.should.have.status(401);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('401');
+        response.body.should.have.property('message').eql('you are not authorized');
+        done();
+      });
+  });
+
+  it('unauthorized to delete party DELETE /api/v2/parties/:id', (done) => {
+    chai.request(app)
+      .delete('/api/v2/parties/10')
+      .end((error, response) => {
+        response.should.have.status(401);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('401');
+        response.body.should.have.property('message').eql('auth failed');
         done();
       });
   });
