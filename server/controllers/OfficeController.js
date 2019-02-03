@@ -70,17 +70,27 @@ class OfficeController {
     });
   }
 
-  // static getOneOffice(request, response) {
-  //   const { id } = request.params;
+  static getOneOffice(request, response) {
+    const { id } = request.params;
 
-  //   const office = officeDb.find(o => o.id === parsedInt(id));
+    const getOffice = 'SELECT * FROM office WHERE id = $1';
 
-  //   if (office) {
-  //     return success(response, 200, '200', office);
-  //   }
+    pool.query(getOffice, [id], (err, result) => {
+      if (err) {
+        return error(response, 500, '500', 'cannot connect to database');
+      }
 
-  //   return error(response, 404, '404', 'Sorry, the office id was not found');
-  // }
+      if (result.rowCount > 0) {
+        const oneOffice = result.rows;
+        return success(response, 200, '200', {
+          message: 'found office',
+          oneOffice,
+        });
+      }
+
+      return error(response, 404, '404', 'Sorry, the office id was not found');
+    });
+  }
 }
 
 export default OfficeController;

@@ -24,8 +24,7 @@ app.delete('/api/v2/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyC
 
 app.post('/api/v2/office', isAdmin, OfficeValidation.isCreateOfficeValid, OfficeController.createOffice);
 app.get('/api/v2/office', OfficeController.allOffice);
-
-// app.get('/api/v2/office/:id', PartyValidation.isIdAnInteger, OfficeController.getOneOffice);
+app.get('/api/v2/office/:id', PartyValidation.isIdAnInteger, OfficeController.getOneOffice);
 
 // app.post('/api/v2/login', UserController.login);
 
