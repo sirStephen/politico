@@ -51,8 +51,7 @@ class PartyController {
         return error(response, 400, '400', {
           message: 'an error occurred while creating a new party',
         });
-      },
-    );
+      });
   }
 
   /**

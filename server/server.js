@@ -22,7 +22,7 @@ app.post('/api/v2/parties', isAdmin, PartyValidation.isCreatePartyValid, PartyCo
 app.put('/api/v2/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyValidation.isCreatePartyValid, PartyController.updateParty);
 app.delete('/api/v2/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyController.deleteParty);
 
-// app.post('/api/v2/office', isAdmin, OfficeValidation.isCreateOfficeValid, OfficeController.createOffice);
+app.post('/api/v2/office', isAdmin, OfficeValidation.isCreateOfficeValid, OfficeController.createOffice);
 
 // app.get('/api/v2/office', OfficeController.allOffice);
 
