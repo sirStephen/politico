@@ -26,9 +26,11 @@ class PartyController {
       partyname, hqAddress, logoUrl, createat,
     } = request.body;
 
-    pool.query(
-      'INSERT INTO party(partyname, hqAddress, logoUrl, createat) VALUES($1, $2, $3, $4)',
-      [partyname, hqAddress, logoUrl, createat],
+    const insertParty = 'INSERT INTO party(partyname, hqAddress, logoUrl, createat) VALUES($1, $2, $3, $4)';
+
+    const insertValues = [partyname, hqAddress, logoUrl, createat];
+
+    pool.query(insertParty, insertValues,
       (err, result) => {
         if (err) {
           return error(response, 500, '500', {
@@ -64,7 +66,9 @@ class PartyController {
    */
 
   static allParty(request, response) {
-    pool.query('SELECT * FROM party ORDER BY id ASC', (err, result) => {
+    const allPartySql = 'SELECT * FROM party ORDER BY id ASC';
+
+    pool.query(allPartySql, (err, result) => {
       if (err) {
         return error(response, 500, '500', 'cannot connect to database');
       }
@@ -95,7 +99,7 @@ class PartyController {
 
   /**
    *
-   * @description update a party
+   * @description get a party
    * @static method
    * @param {object} request - Request object
    * @param {object} response - Reponse object
@@ -105,7 +109,9 @@ class PartyController {
   static getOneParty(request, response) {
     const { id } = request.params;
 
-    pool.query('SELECT * FROM party WHERE id = $1', [id], (err, result) => {
+    const getParty = 'SELECT * FROM party WHERE id = $1';
+
+    pool.query(getParty, [id], (err, result) => {
       if (err) {
         return error(response, 500, '500', 'cannot connect to database');
       }
@@ -122,20 +128,50 @@ class PartyController {
     });
   }
 
-  // static updateParty(request, response) {
-  //   const { id } = request.params;
+  /**
+   *
+   * @description update party
+   * @static method
+   * @param {object} request - Request object
+   * @param {object} response - Reponse object
+   * @returns {json} response.json
+   * @memberOf PartyController
+   */
+  static updateParty(request, response) {
+    const { id } = request.params;
 
-  //   const party = partyDb.find(p => p.id === parsedInt(id));
+    const {
+      partyname, hqAddress, logoUrl, createat,
+    } = request.body;
 
-  //   if (party) {
-  //     party.partyName = request.body.partyName;
-  //     party.hqAddress = request.body.hqAddress;
+    const updateParty = 'UPDATE party SET partyname = ($1), hqAddress = ($2), logoUrl = ($3), createat = ($4) WHERE id = ($5)';
 
-  //     return success(response, 200, '200', party);
-  //   }
+    const updateValues = [partyname, hqAddress, logoUrl, createat, id];
 
-  //   return error(response, 404, '404', 'Sorry, the party id was not found');
-  // }
+    pool.query(updateParty, updateValues, (err, result) => {
+      if (err) {
+        return error(response, 500, '500', {
+          message: 'cannot connect to database',
+          err,
+        });
+      }
+
+      if (result) {
+        if (result.rowCount > 0) {
+          return success(response, 200, '200', {
+            message: 'the party was updated successfully',
+            id,
+            partyname,
+            hqAddress,
+            logoUrl,
+          });
+        }
+      }
+
+      return error(response, 404, '404', 'Sorry, the party id was not found');
+    });
+    return null;
+  }
 }
 
 export default PartyController;
