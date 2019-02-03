@@ -43,4 +43,39 @@ describe('OFFICE', () => {
         done();
       });
   });
+
+  it('user/admin should be able to fetch a particular office on GET /api/v2/office/:id', (done) => {
+    chai.request(app)
+      .get('/api/v2/office/2')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('200');
+        done();
+      });
+  });
+
+  it('when the endpoint is an integer GET /api/v2/office/:id', (done) => {
+    chai.request(app)
+      .get('/api/v2/office/2a')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('404');
+        response.body.should.have.property('message').eql('Sorry, the party id must be an integer');
+        done();
+      });
+  });
+
+  it('when the endpoint is invalid GET /api/v2/office/:id', (done) => {
+    chai.request(app)
+      .get('/api/v2/office/1000')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('404');
+        response.body.should.have.property('message').eql('Sorry, the office id was not found');
+        done();
+      });
+  });
 });
