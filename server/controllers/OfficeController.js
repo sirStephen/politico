@@ -53,12 +53,22 @@ class OfficeController {
       });
   }
 
-  // static allOffice(request, response) {
-  //   if (officeDb.length > 0) {
-  //     return success(response, 200, '200', officeDb);
-  //   }
-  //   return success(response, 200, '200', 'no registered office');
-  // }
+  static allOffice(request, response) {
+    const allOfficeSql = 'SELECT * FROM office ORDER BY id ASC';
+
+    pool.query(allOfficeSql, (err, result) => {
+      if (err) {
+        return error(response, 500, '500', 'cannot connect to database');
+      }
+
+      if (result.rowCount > 0) {
+        const getAllOffice = result.rows;
+        return success(response, 200, '200', getAllOffice);
+      }
+
+      return error(response, 404, '404', 'Sorry, no party found');
+    });
+  }
 
   // static getOneOffice(request, response) {
   //   const { id } = request.params;

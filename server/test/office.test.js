@@ -22,4 +22,25 @@ describe('OFFICE', () => {
         done();
       });
   });
+
+  it('user/admin should be able to fetch all office on GET /api/v2/office', (done) => {
+    chai.request(app)
+      .get('/api/v2/office')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('200');
+        done();
+      });
+  });
+
+  it('user/admin should be able to fetch all office on GET /api/v2/office', (done) => {
+    chai.request(app)
+      .get('/api/v2/offic')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.body.should.be.a('object');
+        done();
+      });
+  });
 });
