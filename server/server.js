@@ -27,6 +27,7 @@ app.get('/api/v2/office', OfficeController.allOffice);
 app.get('/api/v2/office/:id', PartyValidation.isIdAnInteger, OfficeController.getOneOffice);
 
 // app.post('/api/v2/login', UserController.login);
+app.post('/api/v2/users', UserController.createUser);
 
 app.listen(process.env.PORT, () => {
   console.log(`app is listening on ${process.env.PORT}`);
