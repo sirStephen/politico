@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import PartyController from './controllers/PartyController';
 import UserController from './controllers/UserController';
 import OfficeController from './controllers/OfficeController';
-import isAdmin from './middleware/Privilege';
+import isAdmin from './middleware/AuthCheck';
 import PartyValidation from './middleware/validation/PartyValidation';
 import OfficeValidation from './middleware/validation/OfficeValidation';
 
@@ -26,7 +26,7 @@ app.post('/api/v2/office', isAdmin, OfficeValidation.isCreateOfficeValid, Office
 app.get('/api/v2/office', OfficeController.allOffice);
 app.get('/api/v2/office/:id', PartyValidation.isIdAnInteger, OfficeController.getOneOffice);
 
-// app.post('/api/v2/login', UserController.login);
+app.post('/api/v2/login', UserController.login);
 app.post('/api/v2/users', UserController.createUser);
 
 app.listen(process.env.PORT, () => {
