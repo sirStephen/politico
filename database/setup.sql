@@ -15,7 +15,7 @@ CREATE TABLE users(
   phonenumber bigserial,
   password text,
   passportUrl text,
-  isAdmin boolean
+  role character varying(50)
 );
 
 CREATE TABLE office(
@@ -68,8 +68,8 @@ VALUES ('president', 'federal', 'NOW()');
 INSERT INTO office(officename, type, createat)
 VALUES ('vice-president', 'federal', 'NOW()');
 
-INSERT INTO users(firstname, lastname, othername, email, phonenumber, password, passportUrl, isAdmin)
-VALUES ('Gregory', 'Otiono', 'Tobechukwu', 'greg@gmail.com', '08134766076', '$2y$10$.IIhGHc6s/PRPqHjQtY7Turu8FppQ5rIUt12XGXZ5xVJc7ASGKIr6', 'assets/img/profile.png', 'true');
+INSERT INTO users(firstname, lastname, othername, email, phonenumber, password, passportUrl, role)
+VALUES ('Gregory', 'Otiono', 'Tobechukwu', 'greg@gmail.com', '2348134766076', '$2y$10$VaaC2O44wnWjbcoA1v3FKeqvWNfFApJ8H.YyC3CLgV9E0QP2JAKeS', 'assets/img/profile.png', 'admin');
 
-INSERT INTO users(firstname, lastname, othername, email, phonenumber, password, passportUrl, isAdmin)
-VALUES ('Damian', 'Okoye', 'Chukwudubem', 'damian@gmail.com', '08134766076', '$2y$10$A4OXP2AT8sELLrkhBWBsmuoSDdgielF46CvM5uI.e7lUMdgMYsJvS', 'assets/img/profile.png', 'false');
+INSERT INTO users(firstname, lastname, othername, email, phonenumber, password, passportUrl, role)
+VALUES ('Damian', 'Okoye', 'Chukwudubem', 'damian@gmail.com', '08134766076', '$2y$10$A4OXP2AT8sELLrkhBWBsmuoSDdgielF46CvM5uI.e7lUMdgMYsJvS', 'assets/img/profile.png', 'user');

@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import userDb from '../models/userDb';
 import { error, success } from '../helpers/helpers';
 import pool from '../db';
 
@@ -8,50 +7,44 @@ class UserController {
   static login(request, response) {
     const { email, password } = request.body;
 
-    userDb.forEach((user) => {
-      if (email === user.email && password === user.password && user.role === 'admin') {
-        if (password) {
-          const token = jwt.sign({
-            data: {
-              id: user.id,
-              email: user.email,
-              role: user.role,
-            },
-          }, process.env.JWT_KEY, { expiresIn: '24h' });
-          return response.status(200).json({
-            message: 'you have successfully logged in',
-            email: user.email,
-            role: user.role,
-            token,
-          });
-        }
+    const selectUser = 'SELECT * FROM users WHERE email = $1';
+
+    pool.query(selectUser, [email], (err, result) => {
+      if (err) {
+        return error(response, 500, '500', 'cannot connect to database');
       }
 
-      if (email === user.email && password === user.password && user.role === 'user') {
-        if (password) {
+      if (result.rowCount > 0) {
+        // Load hash from your password DB.
+        const isPassword = bcrypt.compareSync(password, result.rows[0].password);
+        if (!isPassword) {
+          return error(response, 400, '400', 'Invalid password');
+        }
+
+        if (isPassword) {
           const token = jwt.sign({
             data: {
-              id: user.id,
-              email: user.email,
-              role: user.role,
+              id: result.rows[0].id,
+              role: result.rows[0].role,
             },
           }, process.env.JWT_KEY, { expiresIn: '24h' });
-          return response.status(200).json({
+          return success(response, 200, '200', {
             message: 'you have successfully logged in',
-            email: user.email,
-            role: user.role,
+            email: result.rows[0].email,
+            firstname: result.rows[0].firstname,
+            lastname: result.rows[0].lastname,
+            role: result.rows[0].role,
             token,
           });
         }
       }
-      return null;
+      return error(response, 404, '404', 'email address or password does not exist.');
     });
-    return error(response, 400, 'email address or password does not exist.');
   }
 
   static createUser(request, response) {
     const {
-      firstname, lastname, othername, email, phonenumber, password, passportUrl, isAdmin,
+      firstname, lastname, othername, email, phonenumber, password, passportUrl, role,
     } = request.body;
 
     const userSql = 'SELECT * FROM users WHERE email = $1';
@@ -67,10 +60,10 @@ class UserController {
 
       const hashPassword = bcrypt.hashSync(password, 10);
 
-      const insertUser = 'INSERT INTO users(firstname, lastname, othername, email, phonenumber, password, passportUrl, isAdmin) VALUES($1, $2, $3, $4, $5, $6, $7, $8)';
+      const insertUser = 'INSERT INTO users(firstname, lastname, othername, email, phonenumber, password, passportUrl, role) VALUES($1, $2, $3, $4, $5, $6, $7, $8)';
 
       const insertValues = [firstname, lastname, othername, email, phonenumber, hashPassword,
-        passportUrl, isAdmin];
+        passportUrl, role];
 
       pool.query(insertUser, insertValues, (fail) => {
         if (fail) {
@@ -86,7 +79,7 @@ class UserController {
           phonenumber,
           password,
           passportUrl,
-          isAdmin,
+          role,
         });
       });
       return null;
