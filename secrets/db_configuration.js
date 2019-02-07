@@ -1,6 +1,9 @@
 import { config } from 'dotenv';
 import url from 'url';
-// config();
+
+config();
+
+
 // const dbConfig = {};
 
 // dbConfig.test = {
