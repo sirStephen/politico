@@ -8,9 +8,9 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('OFFICE', () => {
-  it('admin should be able to create new office on POST /api/v2/office', (done) => {
+  it('admin should be able to create new office on POST /api/v2/offices', (done) => {
     chai.request(app)
-      .post('/api/v2/office')
+      .post('/api/v2/offices')
       .set('Authorization', admin)
       .send({ officename: 'president', type: 'federal', createat: 'NOW()' })
       .end((error, response) => {
@@ -23,9 +23,9 @@ describe('OFFICE', () => {
       });
   });
 
-  it('user/admin should be able to fetch all office on GET /api/v2/office', (done) => {
+  it('user/admin should be able to fetch all office on GET /api/v2/offices', (done) => {
     chai.request(app)
-      .get('/api/v2/office')
+      .get('/api/v2/offices')
       .end((error, response) => {
         response.should.have.status(200);
         response.body.should.be.a('object');
@@ -34,7 +34,7 @@ describe('OFFICE', () => {
       });
   });
 
-  it('user/admin should be able to fetch all office on GET /api/v2/office', (done) => {
+  it('user/admin should be able to fetch all office on GET /api/v2/offices', (done) => {
     chai.request(app)
       .get('/api/v2/offic')
       .end((error, response) => {
@@ -44,9 +44,9 @@ describe('OFFICE', () => {
       });
   });
 
-  it('user/admin should be able to fetch a particular office on GET /api/v2/office/:id', (done) => {
+  it('user/admin should be able to fetch a particular office on GET /api/v2/offices/:id', (done) => {
     chai.request(app)
-      .get('/api/v2/office/2')
+      .get('/api/v2/offices/2')
       .end((error, response) => {
         response.should.have.status(200);
         response.body.should.be.a('object');
@@ -55,9 +55,9 @@ describe('OFFICE', () => {
       });
   });
 
-  it('when the endpoint is an integer GET /api/v2/office/:id', (done) => {
+  it('when the endpoint is an integer GET /api/v2/offices/:id', (done) => {
     chai.request(app)
-      .get('/api/v2/office/2a')
+      .get('/api/v2/offices/2a')
       .end((error, response) => {
         response.should.have.status(404);
         response.body.should.be.a('object');
@@ -67,9 +67,9 @@ describe('OFFICE', () => {
       });
   });
 
-  it('when the endpoint is invalid GET /api/v2/office/:id', (done) => {
+  it('when the endpoint is invalid GET /api/v2/offices/:id', (done) => {
     chai.request(app)
-      .get('/api/v2/office/1000')
+      .get('/api/v2/offices/1000')
       .end((error, response) => {
         response.should.have.status(404);
         response.body.should.be.a('object');

@@ -22,11 +22,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('*', cloudinaryConfig);
 
-app.get('/', (req, res) => res.status(200));
+app.get('/', (request, response) => response.status(200).json({
+  status: 200,
+  message: 'You welcome to Politico. We are here to serve Nigeria and show transparency.',
+}));
 
 app.get('/api/v2/parties/:id', PartyValidation.isIdAnInteger, PartyController.getOneParty);
 app.get('/api/v2/parties', PartyController.allParty);
-app.post('/api/v2/parties', isAdmin, PartyController.createParty);
+app.post('/api/v2/parties', isAdmin, PartyValidation.isCreatePartyValid, PartyController.createParty);
 app.patch('/api/v2/parties/:id/name', isAdmin, PartyValidation.isIdAnInteger, PartyValidation.isUpdateParty, PartyController.updateParty);
 app.delete('/api/v2/parties/:id', isAdmin, PartyValidation.isIdAnInteger, PartyController.deleteParty);
 

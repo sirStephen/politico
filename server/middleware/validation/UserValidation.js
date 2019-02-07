@@ -6,6 +6,11 @@ class UserValidation {
       firstname, lastname, othername, email, phonenumber, password,
     } = request.body;
 
+    let isEmailValid = /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/g;
+
+    isEmailValid = isEmailValid.test(String(email).toLowerCase());
+
+
     if (firstname === '' || !firstname) {
       return error(response, 400, '400', 'Sorry, firstname name is required');
     }
@@ -18,8 +23,8 @@ class UserValidation {
       return error(response, 400, '400', 'Sorry, othername is required');
     }
 
-    if (email === '' || !email) {
-      return error(response, 400, '400', 'Sorry, email is required');
+    if (isEmailValid === '' || !isEmailValid) {
+      return error(response, 400, '400', 'Sorry, invalid email');
     }
 
     if (phonenumber === '' || !phonenumber) {
@@ -58,8 +63,12 @@ class UserValidation {
   static isLoginValid(request, response, next) {
     const { email, password } = request.body;
 
-    if (email === '' || !email) {
-      return error(response, 400, '400', 'Sorry, email is required');
+    let isEmailValid = /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/g;
+
+    isEmailValid = isEmailValid.test(String(email).toLowerCase());
+
+    if (isEmailValid === '' || !isEmailValid) {
+      return error(response, 400, '400', 'Sorry, invalid email');
     }
 
     if (password === '' || !password) {

@@ -75,7 +75,9 @@ describe('PARTY', () => {
     chai.request(app)
       .post('/api/v2/parties')
       .set('Authorization', admin)
-      .send({ partyname: '', hqAddress: '3, Wegbo Street, Lagos.' })
+      .send({
+        partyname: '', hqAddress: '3, Wegbo Street, Lagos.', logoUrl: 'assets/pic.jgp', createat: 'NOW()' 
+      })
       .end((error, response) => {
         response.should.have.status(400);
         response.body.should.be.a('object');
@@ -176,17 +178,16 @@ describe('PARTY', () => {
       });
   });
 
-  it('admin should be able to update party /api/v1/parties/:id', (done) => {
+  it('admin should be able to update party /api/v1/parties/:id/name', (done) => {
     chai.request(app)
-      .put('/api/v2/parties/4')
+      .patch('/api/v2/parties/4/name')
       .set('Authorization', admin)
-      .send({ partyname: 'pdp', hqAddress: '3, Wegbo Street, Lagos.' })
+      .send({ partyname: 'pdp' })
       .end((error, response) => {
         response.should.have.status(200);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('200');
         response.body.should.have.property('data').which.is.an('object').and.has.property('partyname');
-        response.body.should.have.property('data').which.is.an('object').and.has.property('hqAddress');
         response.body.should.have.property('data');
         response.body.should.have.property('data').which.is.an('object').and.has.property('id');
         response.body.should.have.property('data');
@@ -194,9 +195,9 @@ describe('PARTY', () => {
       });
   });
 
-  it('user should not be able to update party PUT /api/v1/parties/:id', (done) => {
+  it('user should not be able to update party PUT /api/v1/parties/:id/name', (done) => {
     chai.request(app)
-      .put('/api/v2/parties/4')
+      .patch('/api/v2/parties/4/name')
       .set('Authorization', user)
       .send({ partyName: 'pdp', hqAddress: '3, Wegbo Street, Lagos.' })
       .end((error, response) => {
@@ -208,9 +209,9 @@ describe('PARTY', () => {
       });
   });
 
-  it('when it is not a user/admin to update party PUT /api/v1/parties/:id', (done) => {
+  it('when it is not a user/admin to update party PUT /api/v1/parties/:id/name', (done) => {
     chai.request(app)
-      .put('/api/v2/parties/4')
+      .patch('/api/v2/parties/4/name')
       .send({ partyName: 'pdp', hqAddress: '3, Wegbo Street, Lagos.' })
       .end((error, response) => {
         response.should.have.status(401);
@@ -221,23 +222,23 @@ describe('PARTY', () => {
       });
   });
 
-  it('admin should not be able to update party /api/v1/parties/:id', (done) => {
+  it('admin should not be able to update party /api/v1/parties/:id/name', (done) => {
     chai.request(app)
-      .put('/api/v2/parties/1000')
+      .patch('/api/v2/parties/1000/name')
       .set('Authorization', admin)
-      .send({ partyname: 'pdp', hqAddress: '3, Wegbo Street, Lagos.' })
+      .send({ partyname: 'pdp' })
       .end((error, response) => {
         response.should.have.status(404);
         response.body.should.be.a('object');
         response.body.should.have.property('status').eql('404');
-        response.body.should.have.property('message').eql('Sorry, the party id was not found');
+        response.body.should.have.property('message').eql('Sorry, party with the id not found');
         done();
       });
   });
 
-  it('missing fields in update party /api/v1/parties/:id', (done) => {
+  it('missing fields in update party /api/v1/parties/:id/name', (done) => {
     chai.request(app)
-      .put('/api/v2/parties/1000')
+      .patch('/api/v2/parties/1000/name')
       .set('Authorization', admin)
       .send({ partyname: '', hqAddress: '3, Wegbo Street, Lagos.' })
       .end((error, response) => {
@@ -249,23 +250,9 @@ describe('PARTY', () => {
       });
   });
 
-  it('missing fields in update party /api/v1/parties/:id', (done) => {
+  it('id must be an integer in update party /api/v1/parties/:id/name', (done) => {
     chai.request(app)
-      .put('/api/v2/parties/1000')
-      .set('Authorization', admin)
-      .send({ partyname: 'pdp', hqAddress: '' })
-      .end((error, response) => {
-        response.should.have.status(400);
-        response.body.should.be.a('object');
-        response.body.should.have.property('status').eql('400');
-        response.body.should.have.property('message').eql('Sorry, hqAddress is required');
-        done();
-      });
-  });
-
-  it('id must be an integer in update party /api/v1/parties/:id', (done) => {
-    chai.request(app)
-      .put('/api/v2/parties/as')
+      .patch('/api/v2/parties/as/name')
       .set('Authorization', admin)
       .send({ partyname: 'pdp', hqAddress: '3, Wegbo Street' })
       .end((error, response) => {
