@@ -23,6 +23,12 @@
   "homepage": "https://github.com/sirStephen/politico#readme",
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "@babel/core": "^7.2.2",
+    "@babel/register": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.8",
     "bcrypt": "^3.0.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
