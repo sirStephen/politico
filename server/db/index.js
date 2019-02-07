@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import { config } from 'dotenv';
-import dbConfig from '../../secrets/db_configuration';
+// import dbConfig from '../../secrets/db_configuration';
 
 config();
 
