@@ -12,7 +12,7 @@ describe('USERS', () => {
     chai.request(app)
       .post('/api/v2/users')
       .send({
-        firstname: 'sandra', lastname: 'sandra', othername: 'sandra', email: 'sandra@gmail.com', phonenumber: 2348134766076, password: 'sandra', passportUrl: 'assets/img/profile.jpg', role: 'user',
+        firstname: 'sandra', lastname: 'sandra', othername: 'sandra', email: 'sandra@gmail.com', phonenumber: 2348134766076, password: 'sandras', passportUrl: 'assets/img/profile.jpg', role: 'user',
       })
       .end((error, response) => {
         response.should.have.status(201);
@@ -24,10 +24,40 @@ describe('USERS', () => {
       });
   });
 
+  it('users firstname is required /api/v2/users', (done) => {
+    chai.request(app)
+      .post('/api/v2/users')
+      .send({
+        firstname: '', lastname: 'sandra', othername: 'sandra', email: 'sandra@gmail.com', phonenumber: 2348134766076, password: 'sandra', passportUrl: 'assets/img/profile.jpg', role: 'user',
+      })
+      .end((error, response) => {
+        response.should.have.status(400);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('400');
+        response.body.should.have.property('message').eql('Sorry, firstname name is required');
+        done();
+      });
+  });
+
+  it('users firstname is required /api/v2/users', (done) => {
+    chai.request(app)
+      .post('/api/v2/users')
+      .send({
+        firstname: 'sandra', lastname: '', othername: 'sandra', email: 'sandra@gmail.com', phonenumber: 2348134766076, password: 'sandras', passportUrl: 'assets/img/profile.jpg', role: 'user',
+      })
+      .end((error, response) => {
+        response.should.have.status(400);
+        response.body.should.be.a('object');
+        response.body.should.have.property('status').eql('400');
+        response.body.should.have.property('message').eql('Sorry, lastname is required');
+        done();
+      });
+  });
+
   it('users should be able to login on POST /api/v2/login', (done) => {
     chai.request(app)
       .post('/api/v2/login')
-      .send({ email: 'sandra@gmail.com', password: 'sandra' })
+      .send({ email: 'sandra@gmail.com', password: 'sandras' })
       .end((error, response) => {
         response.should.have.status(200);
         response.body.should.be.a('object');

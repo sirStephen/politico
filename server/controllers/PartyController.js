@@ -150,40 +150,26 @@ class PartyController {
    * @returns {json} response.json
    * @memberOf PartyController
    */
-  static updateParty(request, response) {
+  static async updateParty(request, response) {
     const { id } = request.params;
+    const partyName = request.body.partyname;
 
-    const {
-      partyname, hqAddress, logoUrl, createat,
-    } = request.body;
+    const findPartyId = 'SELECT * FROM party WHERE id = $1';
 
-    const updateParty = 'UPDATE party SET partyname = ($1), hqAddress = ($2), logoUrl = ($3), createat = ($4) WHERE id = ($5)';
+    const updateQuery = 'UPDATE party SET partyname = $1 WHERE id = $2 RETURNING id, partyname';
 
-    const updateValues = [partyname, hqAddress, logoUrl, createat, id];
-
-    pool.query(updateParty, updateValues, (err, result) => {
-      if (err) {
-        return error(response, 500, '500', {
-          message: 'cannot connect to database',
-          err,
-        });
+    try {
+      const { rows } = await pool.query(findPartyId, [id]);
+      if (!rows[0]) {
+        return error(response, 404, '404', 'Sorry, party with the id not found');
       }
 
-      if (result) {
-        if (result.rowCount > 0) {
-          return success(response, 200, '200', {
-            message: 'the party was updated successfully',
-            id,
-            partyname,
-            hqAddress,
-            logoUrl,
-          });
-        }
-      }
+      const updateResult = await pool.query(updateQuery, [partyName, id]);
 
-      return error(response, 404, '404', 'Sorry, the party id was not found');
-    });
-    return null;
+      return success(response, 200, '200', updateResult.rows[0]);
+    } catch (err) {
+      return error(response, 500, '500', 'Sorry, unexpected database error');
+    }
   }
 }
 

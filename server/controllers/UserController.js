@@ -44,8 +44,10 @@ class UserController {
 
   static createUser(request, response) {
     const {
-      firstname, lastname, othername, email, phonenumber, password, passportUrl, role,
+      firstname, lastname, othername, email, phonenumber, password, passportUrl,
     } = request.body;
+
+    const role = 'user';
 
     const userSql = 'SELECT * FROM users WHERE email = $1';
 
@@ -77,7 +79,6 @@ class UserController {
           othername,
           email,
           phonenumber,
-          password,
           passportUrl,
           role,
         });

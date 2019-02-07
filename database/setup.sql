@@ -1,5 +1,5 @@
 CREATE TABLE party(
-  id SERIAL,
+  id SERIAL primary key,
   partyname character varying(250) not null,
   hqAddress text,
   logoUrl text,
@@ -7,7 +7,7 @@ CREATE TABLE party(
 );
 
 CREATE TABLE users(
-  id SERIAL,
+  id SERIAL primary key,
   firstname character varying(250),
   lastname character varying(250),
   othername character varying(250),
@@ -19,21 +19,27 @@ CREATE TABLE users(
 );
 
 CREATE TABLE office(
-  id SERIAL,
+  id SERIAL primary key,
   officename character varying(250),
   type character varying(250),
   createat timestamp
 );
 
--- CREATE TABLE candidates(
---   id SERIAL,
---   "firstName" character varying(250),
---   "lastName" character varying(250),
---   username text unique not null,
---   password text,
---   role character varying(50)
---   -- CONSTRAINT users_pkey PRIMARY KEY (id)
--- );
+CREATE TABLE candidates(
+  id SERIAL,
+  officeid INTEGER REFERENCES office(id) ON DELETE CASCADE,
+  partyid INTEGER REFERENCES party(id) ON DELETE CASCADE,
+  userid INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  PRIMARY KEY(userid, officeid)
+);
+
+CREATE TABLE votes(
+  id SERIAL,
+  officeid INTEGER REFERENCES office(id) ON DELETE CASCADE,
+  voterid INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  candidateid INTEGER not null,
+  PRIMARY KEY(voterid, officeid)
+);
 
 INSERT INTO party(partyname, hqAddress, logoUrl, createat)
 VALUES('pdp', '3, Wegbo Street, Off-Iwaya, Lagos', 'assets/img/picture.jpg', 'NOW()');
@@ -69,7 +75,13 @@ INSERT INTO office(officename, type, createat)
 VALUES ('vice-president', 'federal', 'NOW()');
 
 INSERT INTO users(firstname, lastname, othername, email, phonenumber, password, passportUrl, role)
-VALUES ('Gregory', 'Otiono', 'Tobechukwu', 'greg@gmail.com', '2348134766076', '$2y$10$VaaC2O44wnWjbcoA1v3FKeqvWNfFApJ8H.YyC3CLgV9E0QP2JAKeS', 'assets/img/profile.png', 'admin');
+VALUES ('Gregory', 'Otiono', 'Tobechukwu', 'gregory@gmail.com', '2348134766076', '$2b$10$LG9F1SCaQO0NgCK1n8F7MO5fWdWZV.n34Vcc/oa4tvn6W6RymkHVS', 'assets/img/profile.png', 'admin');
 
 INSERT INTO users(firstname, lastname, othername, email, phonenumber, password, passportUrl, role)
-VALUES ('Damian', 'Okoye', 'Chukwudubem', 'damian@gmail.com', '08134766076', '$2y$10$A4OXP2AT8sELLrkhBWBsmuoSDdgielF46CvM5uI.e7lUMdgMYsJvS', 'assets/img/profile.png', 'user');
+VALUES ('Damian', 'Okoye', 'Chukwudubem', 'damian@gmail.com', '08134766076', '$2b$10$bxxaL5jkyVoKObyg8LSvBuK6Pb4tP2IOrYs.jiDZDXI4bP3KBhSJy', 'assets/img/profile.png', 'user');
+
+INSERT INTO candidates(officeid, partyid, userid)
+VALUES('1', '2', '2');
+
+INSERT INTO votes(officeid, candidateid, voterid)
+VALUES('1', '2', '2');
