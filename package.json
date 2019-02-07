@@ -9,7 +9,7 @@
     "dev-start": "nodemon --exec babel-watch ./server/server.js", 
     "test:setup": "psql -U postgres -d politicaldb -f ./database/setup.sql",
     "test:pulldown": "psql -U postgres -d politicaldb -f ./database/pulldown.sql",
-    "start": "babel-node ./server/server.js"
+    "start": "cross-env NODE_ENV=production babel-node ./server/server.js"
   },
   "repository": {
     "type": "git",
