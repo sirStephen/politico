@@ -10,7 +10,7 @@
     "test:setup": "psql -U postgres -d politicaldb -f ./database/setup.sql",
     "test:pulldown": "psql -U postgres -d politicaldb -f ./database/pulldown.sql",
     "start": "cross-env NODE_ENV=production babel-node ./server/server.js",
-    "start-heroku": "npm run start && npm run test:setup",
+    "start-heroku": "npm run test:setup",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
