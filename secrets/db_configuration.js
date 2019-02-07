@@ -10,29 +10,24 @@ dbConfig.test = {
   port: process.env.TEST_DB_PORT,
 };
 
-dbConfig.local = {
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-};
+// export const DATABASE_URL = 'postgres://postgres@localhost:5432/politicaldb',
 
-export default dbConfig;
-// import url from 'url';
-// import dotenv from 'dotenv';
 
-// dotenv.config();
+// // export default dbConfig;
+// // import url from 'url';
+// // import dotenv from 'dotenv';
 
-// const params = url.parse(process.env.DATABASE_URL);
-// const auth = params.auth.split(':');
+// // dotenv.config();
 
-// const config = {
-//   user: auth[0],
-//   host: params.hostname,
-//   port: params.port,
-//   database: params.pathname.split('/')[1],
-//   ssl: true,
-// };
+// // const params = url.parse(process.env.DATABASE_URL);
+// // const auth = params.auth.split(':');
 
-// export default config;
+// // const config = {
+// //   user: auth[0],
+// //   host: params.hostname,
+// //   port: params.port,
+// //   database: params.pathname.split('/')[1],
+// //   ssl: true,
+// // };
+
+export default config;

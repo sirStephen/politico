@@ -33,6 +33,7 @@ class PartyController {
     pool.query(insertParty, insertValues,
       (err, result) => {
         if (err) {
+          console.log(err);
           return error(response, 500, '500', {
             message: 'cannot connect to database',
             err,
