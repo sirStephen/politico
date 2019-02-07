@@ -62,8 +62,10 @@ app.post('/upload', multerUploads, (req, res) => {
   return null;
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`app is listening on ${process.env.PORT}`);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`app is listening on ${port}`);
 });
 
 export default app;
