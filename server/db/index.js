@@ -4,15 +4,13 @@ import { config } from 'dotenv';
 
 config();
 
+const connectionString = process.env.LOCAL_DATABASE_URL || process.env.DATABASE_URL;
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString,
 });
 
 console.log('===========================', pool);
 console.log('============================', process.env.NODE_ENV);
-
-pool.on('connect', () => {
-  console.log('connected to the db');
-});
 
 export default pool;

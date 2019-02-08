@@ -70,6 +70,7 @@ class PartyController {
 
     pool.query(allPartySql, (err, result) => {
       if (err) {
+        console.log(err);
         return error(response, 500, '500', 'cannot connect to database');
       }
 
