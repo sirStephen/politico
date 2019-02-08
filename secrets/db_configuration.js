@@ -14,20 +14,5 @@ dbConfig.test = {
 
 
 // // export default dbConfig;
-// // import url from 'url';
-// // import dotenv from 'dotenv';
-
-// // dotenv.config();
-
-// // const params = url.parse(process.env.DATABASE_URL);
-// // const auth = params.auth.split(':');
-
-// // const config = {
-// //   user: auth[0],
-// //   host: params.hostname,
-// //   port: params.port,
-// //   database: params.pathname.split('/')[1],
-// //   ssl: true,
-// // };
 
 export default config;
