@@ -3,10 +3,10 @@ import { error, parsedInt } from '../../helpers/helpers';
 class PartyValidation {
   static isCreatePartyValid(request, response, next) {
     const {
-      partyName, hqAddress,
+      partyname, hqAddress,
     } = request.body;
 
-    if (partyName === '' || !partyName) {
+    if (partyname === '' || !partyname) {
       return error(response, 400, '400', 'Sorry, party name is required');
     }
 
@@ -14,7 +14,23 @@ class PartyValidation {
       return error(response, 400, '400', 'Sorry, hqAddress is required');
     }
 
-    if (typeof partyName !== 'string') {
+    if (typeof partyname !== 'string') {
+      return error(response, 400, '400', 'Sorry,party name must be a string');
+    }
+
+    next();
+
+    return null;
+  }
+
+  static isUpdateParty(request, response, next) {
+    const { partyname } = request.body;
+
+    if (partyname === '' || !partyname) {
+      return error(response, 400, '400', 'Sorry, party name is required');
+    }
+
+    if (typeof partyname !== 'string') {
       return error(response, 400, '400', 'Sorry,party name must be a string');
     }
 
