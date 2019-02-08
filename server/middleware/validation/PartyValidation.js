@@ -23,6 +23,22 @@ class PartyValidation {
     return null;
   }
 
+  static isUpdateParty(request, response, next) {
+    const { partyname } = request.body;
+
+    if (partyname === '' || !partyname) {
+      return error(response, 400, '400', 'Sorry, party name is required');
+    }
+
+    if (typeof partyname !== 'string') {
+      return error(response, 400, '400', 'Sorry,party name must be a string');
+    }
+
+    next();
+
+    return null;
+  }
+
   static isIdAnInteger(request, response, next) {
     const { id } = request.params;
 

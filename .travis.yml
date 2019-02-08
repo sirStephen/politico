@@ -5,5 +5,22 @@ cache:
   directories:
     - "node_modules"
 
+services:
+  - postgresql
+env:
+  global:
+    - CC_TEST_REPORTER_ID=2c21212bd01b49eb1c8bc2929951404e53824061cdaca893373da23563baadaf
+
+before_script:
+  - psql -c "CREATE DATABASE politicaldb;" -U postgres
+  - psql -U postgres -d politicaldb -f ./database/setup.sql
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - npm test
+
 after_success:
   - npm run coverage
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
