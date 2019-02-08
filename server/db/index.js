@@ -11,6 +11,6 @@ const pool = new Pool({
 });
 
 console.log('===========================', pool);
-console.log('============================', process.env.NODE_ENV);
+console.log('===========================', process.env.NODE_ENV);
 
 export default pool;
