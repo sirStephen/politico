@@ -23,8 +23,12 @@ class UserValidation {
       return error(response, 400, '400', 'Sorry, othername is required');
     }
 
-    if (isEmailValid === '' || !isEmailValid) {
+    if (!isEmailValid) {
       return error(response, 400, '400', 'Sorry, invalid email');
+    }
+
+    if (email === '' || !email) {
+      return error(response, 400, '400', 'Sorry, email is required');
     }
 
     if (phonenumber === '' || !phonenumber) {
@@ -67,8 +71,12 @@ class UserValidation {
 
     isEmailValid = isEmailValid.test(String(email).toLowerCase());
 
-    if (isEmailValid === '' || !isEmailValid) {
+    if (!isEmailValid) {
       return error(response, 400, '400', 'Sorry, invalid email');
+    }
+
+    if (email === '' || !email) {
+      return error(response, 400, '400', 'Sorry, email is required');
     }
 
     if (password === '' || !password) {
